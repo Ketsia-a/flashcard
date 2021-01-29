@@ -84,9 +84,9 @@ WSGI_APPLICATION = 'flashcard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'flash',
-        'USER': 'kets',
-        'PASSWORD': 'ketsia321',
+        'NAME': 'card',
+        'USER': 'moringaaccess',
+        'PASSWORD': 'Kennedy',
         'HOST': 'localhost',
 
        

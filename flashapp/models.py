@@ -61,3 +61,4 @@ class Card(models.Model):
     def filter_by_subject(cls, subject):
         card = Cards.objects.filter(subject__name=subject).all()
         return card    
+
