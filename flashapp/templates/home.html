@@ -1,0 +1,64 @@
+{%extends 'base.html'%} {% block content %}
+<style>
+    .bgimg-1 {
+        background-image: url(https://cdn.shopify.com/s/files/1/0777/6955/products/the-nola-abcs-flash-cards-745815_1200x1200.jpg?v=1590031565);
+        min-height: 500px;
+    }
+    
+    .bgimg-2 {
+        background-image: url(https://swaddle-wkwcb6s.stackpathdns.com/wp-content/uploads/2017/03/cute-flashcards.jpg);
+        min-height: 500px;
+    }
+    
+    .bgimg-1,
+    .bgimg-2 {
+        background-attachment: fixed;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    div {
+        display: block;
+    }
+    
+    .caption {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        top: 50%;
+        width: 100%;
+    }
+    
+    .caption span.border {
+        background-color: #111;
+        color: #fff;
+        padding: 18px;
+        font-size: 25px;
+    }
+    
+    .description {
+        color: #777;
+        background-color: white;
+        text-align: center;
+        padding: 50px 80px;
+        text-align: justify;
+    }
+</style>
+
+<div class="bgimg-1">
+    <div class="caption">
+        My Flashcards
+    </div>
+</div>
+<div class="description">
+    <h3 style="text-align:center;">Flashcard</h3>
+    <p>Losing your flash cards? sign up and create them. Impossible to loose and only you can view them.Feel free to create an account, login and learn .</p>
+</div>
+<div class="bgimg-2">
+    <div class="caption" id="about">
+        <span class="border">Enjoy your stay, secure ,safe and we're kid-friendly :) </span>
+    </div>
+</div>
+{%endblock%}
