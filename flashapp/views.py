@@ -5,16 +5,29 @@ from .models import  Profile,Card,Subject
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import SignUpForm, CardForm,UpdateUserProfileForm
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login
 # Create your views here.
 
 
 def home(request):
     return render(request,'home.html')
 
+@login_required(login_url='login')
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            form.save()
+            return redirect('/')
+    else:
+        form = SignUpForm()
+    return render(request, 'register/registration_form.html', {'form': form})
+
 def profile(request, username):
     cards = request.user.profile.cards.all()
-    subject = Subject.objects.all()
+    subjects = Subject.get_subjects()
     if request.method == 'POST':
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if prof_form.is_valid():
@@ -35,39 +48,30 @@ def profile(request, username):
         'prof_form': prof_form,
         'cards': cards,
         'form':form,
-        'subject':subject,
+        'subjects':subjects,
 
     }
     return render(request, 'profile.html', context)
 
-def card_category(request, location):
-    cards = Card.filter_by_subject(subject)
+@login_required(login_url='login')
+def card_category(request, subject):
     current_user = request.user
+    cards = Card.filter_by_subject(subject)
     subjects = Subject.get_subjects()
-    context = {'cards':cards,'subjects': subjects}
+    context = {
+    'cards':cards,
+    'subjects': subjects
+    }
     return render(request,'subject.html',context)    
 
-def register(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'register/registration_form.html', {'form': form})
 
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('home')
-    else:
-          return ('invalid login..')
+# def login(request):
+#     username = request.POST['username']
+#     password = request.POST['password']
+#     user = authenticate(request, username=username, password=password)
+#     if user is not None:
+#         login(request, user)
+#         return redirect('home')
+#     else:
+#           return ('invalid login..')
       
