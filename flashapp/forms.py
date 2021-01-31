@@ -12,11 +12,10 @@ class UpdateUserProfileForm(forms.ModelForm):
 class CardForm(forms.ModelForm):
     class Meta:
         model = Card
-        fields = ['title','note','image']
+        fields = ['title','note','image','subject']
 
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(max_length=50)
-    email = forms.CharField(max_length=60)
+    email = forms.EmailField()
 
     class Meta:
         model = User
