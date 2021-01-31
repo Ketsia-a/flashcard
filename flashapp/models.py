@@ -59,6 +59,6 @@ class Card(models.Model):
 
     @classmethod
     def filter_by_subject(cls, subject):
-        card = Cards.objects.filter(subject__name=subject).all()
+        card = Card.objects.filter(subject__name=subject).all()
         return card    
 
