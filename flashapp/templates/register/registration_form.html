@@ -1,46 +1,24 @@
-{%extends "register/base.html"%}
-{% load bootstrap4 %}
-{% block content %}
-<br><br>
-<div class="container">
-  <div class="row">
-   
-    <!-- <div class="col-md-5" style="padding-top: 50px;">
-      <img src="https://ucarecdn.com/f0e65890-b403-4316-8068-d1dd58c8f80f/instagram.png" alt="insta">
-    </div> -->
-    <div class="col-md-1"></div>
-    <div class="col-md-5">
-      {% if form.errors %}
-      <p> Information provided is incorrect.</p>
-      {% endif %}
-      <div class="card container">
+ {%extends 'register/base.html'%} {% block title %}Create account{% endblock %} {% load crispy_forms_tags %} {% block content %}
 
-        <div class="panel-heading">
-          <h3 class="text-center" style="font-family: 'Lobster Two', cursive;">FLASH-CARDS</h3>
-        </div>
-      
-        <div class="panel-body">
 
-          <form action="/accounts/register/" method="post">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
-            </div>
-
-            <p>Already have an account? <a href="/accounts/login"> Log In</a></p>
-
-            <input type="hidden" name="next" value="{{next}}">
-
-          </form>
-        </div>
-      </div>
+<div class="card-group">
+    <div class="col-md-4">
     </div>
-    <div class="col-md-1"></div>
-
-
-
-  </div>
+    <div class="col-md-4">
+        <hr>
+        <div class="text-center">
+            <h1>Sign Up</h1>
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                <form action="" method="post" class="form-group">
+                    {% csrf_token %} {{form|crispy}}
+                    <button type="submit" class="btn btn-outline-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+    </div>
 </div>
-
 {% endblock %}

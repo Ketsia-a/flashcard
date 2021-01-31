@@ -42,6 +42,10 @@
         </div>
     </div>
     <h3 class="text-center m-4" style="color: red;">My cards</h3>
+    <div class="text-center">
+        {% for subject in subjects %}
+        <a class="mr-1 badge badge-info" href="/subject/{{subject.name}}" style="margin:8px">{{subject.name}}</a> {% endfor %}
+    </div>
     <hr>
     <div class="row justify-content-center">
         {% for card in cards %}
@@ -49,10 +53,12 @@
         <div class="card col-md-3 m-3">
             <img class="card-img-top" width="100%" src="{{ card.image.url }}" alt="-------">
             <div class="card-body">
-                <h5 class="card-title"><span>{{card.title}}</span>
-                    <p class="card-text"><span>{{card.note}}</span>
-                        <p class="card-text"><small class="text-muted">created on : {{card.date|date}}</small></p>
-
+                <h5 class="card-title"><span>{{card.title}}</span></h5>
+                <p class="card-text"><span>{{card.note}}</span></p>
+                <p class="card-text"><small class="text-muted">created on : {{card.date|date}}</small></p>
+                <input class="btn btn-primary" type="reset" value="Delete">
+                <button type="submit" class="btn btn-outline-primary btn-sm"> Update Card</button>
+                <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
             </div>
         </div>
 
