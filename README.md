@@ -9,8 +9,8 @@
 * link to live site 
 * License
 
- #  *Ketsia Iragena*
- #  *Kennedy Karuri
+ ###  *Ketsia Iragena*
+ ###  *Kennedy Karuri*
  
  ## Flash Card
  This is a website to help you remember anything you thinks seems important use these flash cards where you can write anything. 
